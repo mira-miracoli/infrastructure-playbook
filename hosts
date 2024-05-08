@@ -92,3 +92,6 @@ sn06.galaxyproject.eu
 
 [htcondor-submit:vars]
 ansible_group_priority=4
+
+[ticketsystem]
+tickets.galaxyproject.eu  ansible_host=192.52.33.12

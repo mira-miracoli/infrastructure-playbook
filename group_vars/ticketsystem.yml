@@ -1,0 +1,7 @@
+---
+hostname: ticketsystem.galaxyproject.eu
+tailscale_authkey: "{{ tailacale_auth_key_usegalaxy_eu }}"
+docker_daemon_options:
+  data-root: /data/docker
+docker_service_state: started
+docker_service_enabled: true

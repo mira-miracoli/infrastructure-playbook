@@ -1,0 +1,15 @@
+---
+- name: Ticketsystem
+  hosts: ticketsystem
+  become: yes
+  # vars_files:
+   # - secret_group_vars/ticketsystem.yml
+  roles:
+    - artis3n.tailscale
+    - geerlingguy.docker
+  pre_tasks:
+    - ansible.builtin.file:
+        path: /data/docker
+        owner: root
+        group: root
+        mode: "0710"
