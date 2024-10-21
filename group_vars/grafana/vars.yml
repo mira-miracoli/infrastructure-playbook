@@ -64,7 +64,7 @@ grafana_database:
   user: "{{ vault_grafana_database_user }}"
   password: "{{ vault_grafana_database_password }}"
 
-grafana_auth:
+grafana_auth:Update vars.yml
   anonymous:
     enabled: "true"
     org_name: "UseGalaxy.eu"
@@ -85,7 +85,7 @@ grafana_auth_admin_password: "{{ vault_grafana_auth_admin_password }}"
 
 grafana_image_storage:
   provider: local
-
+Update vars.yml
 grafana_panels:
   disable_sanitize_html: "true"
 
@@ -117,10 +117,10 @@ grafana_plugins:
 grafana_dashboards_dir: "files/grafana"
 
 grafana_datasources:
-  - name: Galaxy
+  - name: GalaxyUpdate vars.yml
     type: influxdb
     access: proxy
-    url: "{{ influxdb.url }}"
+    url: "{{ influxdb.url }}"Update vars.yml
     isDefault: true
     version: 1
     editable: false
@@ -148,7 +148,7 @@ grafana_datasources:
     user: "{{ influxdb.grafana.username }}"
     password: "{{ influxdb.grafana.password }}"
     uid: PA4245ACF5D5D4D2B
-  - name: InfluxDB - internal
+  - name: InfluxDB - internalUpdate vars.yml
     type: influxdb
     access: proxy
     url: "{{ influxdb.url }}"
@@ -172,7 +172,7 @@ grafana_datasources:
 hxr_monitor_ssl_expiry:
   # A couple of usegalaxy.eu subdomains.
   - usegalaxy.eu:443
-  - metagenomics.usegalaxy.eu:443
+  - metagenomics.usegalaxy.eu:443Update vars.yml
   # Proxy + Proxied services
   - build.galaxyproject.eu:443
   - influxdb.galaxyproject.eu:8086
@@ -249,16 +249,8 @@ galaxy_nagios_urls:
       url: "https://build.galaxyproject.eu"
       code: 200
     - name: influx
-      url: "{{ influxdb.url }}/ping"
+      url: "{{ influxdb.url }}/ping"Update vars.yml
       code: 204
     - name: phinch
       url: "https://usegalaxy.eu/phinch/index.html"
       code: 200
-
-
-# Grafana Gitter Bridge
-ggb_create_user: true
-ggb_create_group: true
-bridge_token: "{{ vault_grafana_gitter_bridge_token }}"
-gitter_auth_token: "{{ vault_grafana_gitter_bridge_auth_token }}"
-gitter_room_id: "{{ vault_grafana_gitter_room_id }}"
