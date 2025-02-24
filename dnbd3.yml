@@ -19,6 +19,16 @@
         group: "{{ dnbd3_group }}"
         shell: /bin/false
         create_home: false
+    - name: Create tftp user
+      ansible.builtin.group:
+        name: "tftp"
+        state: present
+    - name: Create tftp user
+      ansible.builtin.user:
+        name: "tftp"
+        group: "tftp"
+        shell: /bin/false
+        create_home: false
     - name: Grant access to dnbd3 root directory
       ansible.builtin.file:
         mode: "770"
@@ -50,11 +60,19 @@
 
 
   post_tasks:
-    - name: Grant access to http directory
+    - name: Grant access to http directory on Debian
       ansible.builtin.file:
         mode: "770"
         path: "{{ apache_vhosts[0].documentroot }}"
         state: directory
         owner: "www-data"
         group: "www-data"
-      when: "'dnbd3primary' in group_names"
+      when: "'dnbd3primary' in group_names and ansible_facts['os_family'] == 'Debian'"
+    - name: Grant access to http directory not Debian
+      ansible.builtin.file:
+        mode: "770"
+        path: "{{ apache_vhosts[0].documentroot }}"
+        state: directory
+        owner: "apache"
+        group: "apache"
+      when: "'dnbd3primary' in group_names and ansible_facts['os_family'] != 'Debian'"
