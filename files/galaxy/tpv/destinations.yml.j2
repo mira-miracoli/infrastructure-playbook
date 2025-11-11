@@ -468,7 +468,7 @@ destinations:
     min_accepted_gpus: 0
     max_accepted_gpus: 0
     params:
-      requirements: "GalaxyTraining == false"
+      requirements: "GalaxyTraining == false && GalaxyGroup != pxe_gpu"
       rank: 'GalaxyGroup == "upload"'
     scheduling:
       require:
